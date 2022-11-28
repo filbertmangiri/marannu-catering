@@ -13,7 +13,7 @@
     </div>
   @endif
 
-  <a href="{{ route('foodstuff.create') }}" class="btn btn-outline-dark">Tambah</a>
+  <a href="{{ route('foodstuff.create') }}" class="btn btn-outline-dark mb-3 mb-md-0">Tambah</a>
 
   <table id="foodstuffsTable" class="table table-striped table-hover w-100">
     <thead>

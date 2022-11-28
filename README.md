@@ -17,4 +17,5 @@ php artisan serve
 ```
 
 Jalankan MySQL, pastikan informasi database cocok dengan yang ada di .env
+
 Buka di browser http://localhost:8000

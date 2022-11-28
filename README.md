@@ -16,6 +16,10 @@ npm run build
 php artisan serve
 ```
 
+Kalau di Command Prompt (CMD), ganti
+`cp .env.example .env` dengan
+`copy .env.example .env`
+
 Jalankan MySQL, pastikan informasi database cocok dengan yang ada di .env
 
 Buka di browser http://localhost:8000

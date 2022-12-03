@@ -7,7 +7,7 @@ Cara install :
 ```bash
 git clone https://github.com/filbertmangiri/marannu-catering.git
 cd marannu-catering
-cp .env.example .env
+copy .env.example .env
 composer update
 php artisan key:generate
 php artisan storage:link
@@ -16,9 +16,9 @@ npm run build
 php artisan serve
 ```
 
-Kalau di Command Prompt (CMD), ganti
-`cp .env.example .env` dengan
-`copy .env.example .env`
+Kalau di Git Bash, ganti
+`copy .env.example .env` menjadi
+`cp .env.example .env`
 
 Jalankan MySQL, pastikan informasi database cocok dengan yang ada di `.env`
 

@@ -9,9 +9,9 @@
         <form action="{{ route('register') }}" method="POST">
           @csrf
 
-          <x-floating-input name="name" class="mb-3" autofocus>Nama Lengkap</x-floating-input>
-          <x-floating-input type="email" name="email" class="mb-3">Alamat Email</x-floating-input>
-          <x-floating-input name="username" class="mb-4">Nama Pengguna</x-floating-input>
+          <x-form.floating-input name="name" class="mb-3" autofocus>Nama Lengkap</x-form.floating-input>
+          <x-form.floating-input type="email" name="email" class="mb-3">Alamat Email</x-form.floating-input>
+          <x-form.floating-input name="username" class="mb-4">Nama Pengguna</x-form.floating-input>
 
           <div class="mb-4">
             <div class="form-check form-check-inline">
@@ -33,10 +33,10 @@
 
           <div class="row row-cols-1 mb-0 row-cols-sm-2 mb-sm-4 gx-2">
             <div class="col">
-              <x-floating-input type="password" name="password" class="mb-3 mb-sm-0">Kata Sandi</x-floating-input>
+              <x-form.floating-input type="password" name="password" class="mb-3 mb-sm-0">Kata Sandi</x-form.floating-input>
             </div>
             <div class="col">
-              <x-floating-input type="password" name="password_confirmation" class="mb-4 mb-sm-0">Ulangi Kata Sandi</x-floating-input>
+              <x-form.floating-input type="password" name="password_confirmation" class="mb-4 mb-sm-0">Ulangi Kata Sandi</x-form.floating-input>
             </div>
           </div>
 

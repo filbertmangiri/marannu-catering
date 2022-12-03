@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Foodstuff;
 
 use App\Enums\MeasurementUnit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

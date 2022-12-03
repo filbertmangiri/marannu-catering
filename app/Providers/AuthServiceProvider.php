@@ -6,8 +6,10 @@ namespace App\Providers;
 
 use App\Enums\Role;
 use App\Models\User;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Policies\FoodstuffPolicy;
+use App\Models\Foodstuff\Foodstuff;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Foodstuff::class => FoodstuffPolicy::class
     ];
 
     /**
@@ -33,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user && $role && $user->role->level() >= $role->level();
         });
 
-        Gate::define('view_dashboard', function (User $user) {
+        Gate::define('viewDashboard', function (User $user) {
             return $user && $user->role->level() >= Role::Employee->level();
         });
     }

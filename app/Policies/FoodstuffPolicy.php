@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Enums\Role;
-use App\Models\Foodstuff;
+use App\Models\Foodstuff\Foodstuff;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

@@ -20,7 +20,7 @@
     <x-navbar />
   </header>
 
-  <main class="container my-3 my-lg-5">
+  <main class="container my-3 my-lg-5" style="padding-top: 50px">
     {{ $slot }}
   </main>
 
@@ -33,7 +33,7 @@
     background: rgba(247, 201, 241, 0.4);
     padding: .5rem 1rem;
     border-radius: 30px;
-">
+  ">
     <div class="d-block d-sm-none">Extra Small (xs)</div>
     <div class="d-none d-sm-block d-md-none">Small (sm)</div>
     <div class="d-none d-md-block d-lg-none">Medium (md)</div>

@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Foodstuff;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Foodstuff>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FoodstuffUsageHistory>
  */
-class FoodstuffFactory extends Factory
+class FoodstuffUsageHistoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class FoodstuffFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'used_at' => now()
         ];
     }
 }

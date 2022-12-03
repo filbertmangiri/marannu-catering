@@ -4,6 +4,8 @@ namespace App\Enums;
 
 enum MeasurementUnit: string
 {
+  case Pieces = 'pcs';
+
   case Milligram = 'mg';
   case Gram = 'gr';
   case Kilogram = 'kg';
@@ -15,9 +17,12 @@ enum MeasurementUnit: string
   public function long(): string
   {
     return match ($this) {
+      MeasurementUnit::Pieces => 'Pieces',
+
       MeasurementUnit::Milligram => 'Miligram',
       MeasurementUnit::Gram => 'Gram',
       MeasurementUnit::Kilogram => 'Kilogram',
+
       MeasurementUnit::Milliliter => 'Mililiter',
       MeasurementUnit::Liter => 'Liter',
       MeasurementUnit::Kiloliter => 'Kiloliter',

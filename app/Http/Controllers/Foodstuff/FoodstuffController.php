@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Foodstuff;
 
-use App\Models\Foodstuff;
-use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\Foodstuff\Foodstuff;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\StoreFoodstuffRequest;
-use App\Http\Requests\UpdateFoodstuffRequest;
+use App\Http\Requests\Foodstuff\StoreFoodstuffRequest;
+use App\Http\Requests\Foodstuff\UpdateFoodstuffRequest;
 
 class FoodstuffController extends Controller
 {
@@ -19,9 +20,7 @@ class FoodstuffController extends Controller
     {
         $foodstuffs = Foodstuff::all();
 
-        return view('pages.foodstuff.index', [
-            'foodstuffs' => $foodstuffs
-        ]);
+        return view('pages.foodstuff.index', compact('foodstuffs'));
     }
 
     /**
@@ -37,20 +36,19 @@ class FoodstuffController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreFoodstuffRequest  $request
+     * @param  \App\Http\Requests\Foodstuff\StoreFoodstuffRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreFoodstuffRequest $request)
     {
         $validated = $request->validated();
 
-        dd($validated);
-
-        // $validated['slug'] = Str::slug($validated['name'], '-');
-
         Foodstuff::create($validated);
 
-        return Redirect::route('foodstuff.index')->with('message', 'Bahan makanan berhasil ditambahkan');
+        return Redirect::route('foodstuff.index')->with('alert', [
+            'success' => true,
+            'message' => 'Bahan makanan berhasil ditambahkan'
+        ]);
     }
 
     /**
@@ -61,7 +59,7 @@ class FoodstuffController extends Controller
      */
     public function show(Foodstuff $foodstuff)
     {
-        //
+        return view('pages.foodstuff.show', compact('foodstuff'));
     }
 
     /**
@@ -72,19 +70,41 @@ class FoodstuffController extends Controller
      */
     public function edit(Foodstuff $foodstuff)
     {
-        //
+        return view('pages.foodstuff.edit', [
+            'foodstuff' => $foodstuff
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateFoodstuffRequest  $request
+     * @param  \App\Http\Requests\Foodstuff\UpdateFoodstuffRequest  $request
      * @param  \App\Models\Foodstuff  $foodstuff
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateFoodstuffRequest $request, Foodstuff $foodstuff)
     {
-        //
+        $validated = $request->validated();
+
+        $foodstuff->update($validated);
+
+        return Redirect::route('foodstuff.index')->with('alert', [
+            'success' => true,
+            'message' => 'Bahan makanan berhasil diubah'
+        ]);
+    }
+
+    public function patch(Request $request, Foodstuff $foodstuff)
+    {
+        if (!$request->has('price')) {
+            return response('error', 500);
+        }
+
+        $foodstuff->price = $request->price;
+
+        $foodstuff->save();
+
+        return response('success', 200);
     }
 
     /**
@@ -95,6 +115,11 @@ class FoodstuffController extends Controller
      */
     public function destroy(Foodstuff $foodstuff)
     {
-        //
+        $foodstuff->delete();
+
+        return Redirect::route('foodstuff.index')->with('alert', [
+            'success' => true,
+            'message' => 'Bahan makanan berhasil dihapus'
+        ]);
     }
 }

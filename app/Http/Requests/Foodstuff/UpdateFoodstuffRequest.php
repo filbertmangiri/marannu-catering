@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Foodstuff;
 
-use App\Models\Foodstuff;
+use App\Models\Foodstuff\Foodstuff;
 use Illuminate\Support\Str;
 use App\Enums\MeasurementUnit;
 use Illuminate\Validation\Rules\Enum;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreFoodstuffRequest extends FormRequest
+class UpdateFoodstuffRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,11 @@ class StoreFoodstuffRequest extends FormRequest
      */
     public function rules()
     {
+        // Rule::unique(Foodstuff::class)->ignore($this->foodstuff->id)
+
         return [
             'name' => ['required', 'string'],
-            'slug' => ['required', 'string', 'unique:' . Foodstuff::class],
+            'slug' => ['required', 'string', 'unique:' . Foodstuff::class . ',slug,' . $this->foodstuff->id],
             'price' => ['required', 'numeric', 'min:0'],
             'measurement_unit' => ['required', 'string', new Enum(MeasurementUnit::class)],
         ];

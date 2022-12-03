@@ -1,10 +1,13 @@
 <?php
 
 use App\Enums\Role;
-use App\Http\Controllers\FoodstuffController;
+use App\Models\Foodstuff\Foodstuff;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Foodstuff\FoodstuffController;
+use App\Http\Controllers\Foodstuff\FoodstuffUsageController;
+use App\Http\Controllers\Foodstuff\FoodstuffPurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +27,31 @@ Route::controller(PageController::class)->name('page.')->group(function () {
     Route::get('/dashboard', 'dashboard')->name('dashboard')->middleware([
         'auth',
         'verified',
-        'atleast_role:employee',
+        'can:viewDashboard',
     ]);
 
     Route::get('/home', fn () => redirect(route('page.home')));
 });
 
-Route::resource('foodstuff', FoodstuffController::class)->middleware(['auth', 'atleast_role:moderator']);
+Route::controller(FoodstuffPurchaseController::class)->prefix('/foodstuff/purchase')->name('foodstuff.purchase.')->middleware('can:viewAny,' . Foodstuff::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store')->name('store');
+    Route::get('/{purchaseHistory}', 'show')->name('show');
+});
+
+Route::controller(FoodstuffUsageController::class)->prefix('/foodstuff/usage')->name('foodstuff.usage.')->middleware('can:viewAny,' . Foodstuff::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store')->name('store');
+    Route::get('/{usage}', 'show')->name('show');
+});
+
+Route::patch('/foodstuff/{foodstuff}/patch', [FoodstuffController::class, 'patch']);
+
+Route::resource('foodstuff', FoodstuffController::class)->parameters([
+    'foodstuff' => 'foodstuff:slug'
+])->middleware('can:viewAny,' . Foodstuff::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -3,7 +3,7 @@
   use App\Enums\Role;
 @endphp
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navigationBar">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" id="navigationBar">
   <div class="container">
     <a class="navbar-brand" href="{{ route('page.home') }}">{{ env('APP_NAME') }}</a>
 
@@ -17,7 +17,7 @@
         <a class="nav-link {{ Route::is('page.contact') ? 'active' : '' }}" href="{{ route('page.contact') }}">Kontak</a>
         <a class="nav-link {{ Route::is('page.about') ? 'active' : '' }}" href="{{ route('page.about') }}">Tentang Kami</a>
 
-        @can('view_dashboard')
+        @can('viewDashboard')
           <a class="nav-link {{ Route::is('page.dashboard') ? 'active' : '' }}" href="{{ route('page.dashboard') }}">Dashboard</a>
         @endcan
       </div>

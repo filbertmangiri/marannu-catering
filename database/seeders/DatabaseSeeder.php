@@ -3,7 +3,13 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
+use Database\Seeders\Foodstuff\FoodstuffSeeder;
+use Database\Seeders\Foodstuff\FoodstuffPurchaseSeeder;
+use Database\Seeders\Foodstuff\FoodstuffPurchaseHistorySeeder;
+use Database\Seeders\Foodstuff\FoodstuffUsageSeeder;
+use Database\Seeders\Foodstuff\FoodstuffUsageHistorySeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +23,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             FoodstuffSeeder::class,
+            FoodstuffPurchaseHistorySeeder::class,
+            FoodstuffPurchaseSeeder::class,
+            FoodstuffUsageHistorySeeder::class,
+            FoodstuffUsageSeeder::class,
         ]);
     }
 }

@@ -15,8 +15,8 @@
         <form action="{{ route('login') }}" method="POST">
           @csrf
 
-          <x-floating-input name="emailOrUsername" class="mb-3" autofocus>Email atau username</x-floating-input>
-          <x-floating-input type="password" name="password" class="mb-4">Kata Sandi</x-floating-input>
+          <x-form.floating-input name="emailOrUsername" class="mb-3" autocomplete="on" autofocus>Email atau username</x-form.floating-input>
+          <x-form.floating-input type="password" name="password" class="mb-4" autocomplete="on">Kata Sandi</x-form.floating-input>
 
           <button type="submit" class="btn btn-lg btn-dark rounded-4 d-block w-100">Masuk</button>
         </form>

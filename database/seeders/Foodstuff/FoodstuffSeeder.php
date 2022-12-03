@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Foodstuff;
 
-use App\Models\Foodstuff;
+use App\Models\Foodstuff\Foodstuff;
 use Illuminate\Support\Str;
 use App\Enums\MeasurementUnit;
 use Illuminate\Database\Seeder;

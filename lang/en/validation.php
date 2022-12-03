@@ -64,6 +64,7 @@ return [
         'string' => 'The :attribute must be greater than or equal to :value characters.',
     ],
     'image' => 'The :attribute must be an image.',
+    'image64' => 'The :attribute must be a file of type: :values.',
     'in' => 'The selected :attribute is invalid.',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => 'The :attribute must be an integer.',

@@ -26,7 +26,7 @@ class FoodstuffPurchaseController extends Controller
 
     public function show(FoodstuffPurchaseHistory $purchaseHistory)
     {
-        $purchaseHistory = $purchaseHistory->load(['purchases', 'purchases.foodstuff:id,price']);
+        $purchaseHistory = $purchaseHistory->load(['purchases', 'purchases.foodstuff:id,slug,price']);
 
         return view('pages.foodstuff.purchase.show', compact('purchaseHistory'));
     }

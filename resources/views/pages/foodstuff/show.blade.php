@@ -1,3 +1,3 @@
-<x-app-layout title="{{ $foodstuff->name }}">
+<x-app-layout dashboard title="{{ $foodstuff->name }}">
   @dump($foodstuff->getAttributes())
 </x-app-layout>

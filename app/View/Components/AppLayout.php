@@ -7,10 +7,12 @@ use Illuminate\View\Component;
 class AppLayout extends Component
 {
     public $title;
+    public $dashboard;
 
-    public function __construct($title = null)
+    public function __construct($title = null, $dashboard = false)
     {
         $this->title = $title;
+        $this->dashboard = $dashboard;
     }
 
     /**

@@ -3,7 +3,7 @@
   use App\Enums\Role;
 @endphp
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" id="navigationBar">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" id="navigationBar">
   <div class="container">
     <a class="navbar-brand" href="{{ route('page.home') }}">{{ env('APP_NAME') }}</a>
 
@@ -13,9 +13,9 @@
 
     <div class="collapse navbar-collapse" id="navigationCollapse">
       <div class="navbar-nav">
-        <a class="nav-link {{ Route::is('page.home') ? 'active' : '' }}" href="{{ route('page.home') }}">Beranda</a>
-        <a class="nav-link {{ Route::is('page.contact') ? 'active' : '' }}" href="{{ route('page.contact') }}">Kontak</a>
-        <a class="nav-link {{ Route::is('page.about') ? 'active' : '' }}" href="{{ route('page.about') }}">Tentang Kami</a>
+        <a href="{{ route('page.home') }}" class="nav-link {{ Route::is('page.home') ? 'active' : '' }}">Beranda</a>
+        <a href="{{ route('page.contact') }}" class="nav-link {{ Route::is('page.contact') ? 'active' : '' }}">Kontak</a>
+        <a href="{{ route('page.about') }}" class="nav-link {{ Route::is('page.about') ? 'active' : '' }}">Tentang Kami</a>
 
         @can('viewDashboard')
           <a class="nav-link {{ Route::is('page.dashboard') ? 'active' : '' }}" href="{{ route('page.dashboard') }}">Dashboard</a>

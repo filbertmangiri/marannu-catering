@@ -1,18 +1,18 @@
-<x-app-layout title="Pembelian: {{ Date::parse($purchaseHistory->purchased_at)->format('l, j F Y') }}">
+<x-app-layout dashboard title="Pembelian: {{ Date::parse($purchaseHistory->purchased_at)->format('l, j F Y') }}">
   @push('styles')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/date-1.2.0/fc-4.2.1/fh-3.3.1/r-2.4.0/datatables.min.css" />
   @endpush
 
-  {{-- @dump($purchaseHistory->purchases[1]->toArray()) --}}
-
   <h3>{{ $purchaseHistory->label ?? '' }}</h3>
-  <h3 class="mb-2">{{ Date::parse($purchaseHistory->purchased_at)->format('l, j F Y') }}</h3>
+  <h5 class="mb-2">{{ Date::parse($purchaseHistory->purchased_at)->format('l, j F Y') }}</h5>
+
+  <x-alert />
 
   <table id="purchasesTable" class="table table-striped table-hover w-100">
     <thead>
       <tr>
         <th scope="col">No</th>
-        <th scope="col" width="40%">Nama</th>
+        <th scope="col" width="40%">Bahan Makanan</th>
         <th scope="col">Kuantitas</th>
         <th scope="col">Harga</th>
         <th scope="col">Total</th>
@@ -24,8 +24,10 @@
         <tr>
           <td>{{ $loop->iteration }}</td>
           <td>
-            {{ $purchase->name }}
-            @if (!$purchase->foodstuff)
+            @if ($purchase->foodstuff_id)
+              <a href="{{ route('foodstuff.show', $purchase->foodstuff->slug) }}" class="text-reset">{{ $purchase->name }}</a>
+            @else
+              {{ $purchase->name }}
               <span class="badge rounded-pill text-bg-danger ms-3">Telah dihapus</span>
             @endif
           </td>
@@ -51,13 +53,20 @@
     </tbody>
   </table>
 
+  <form method="POST" id="changePriceForm">
+    @csrf
+    @method('PATCH')
+
+    <input type="hidden" name="price">
+  </form>
+
   @push('scripts')
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/date-1.2.0/fc-4.2.1/fh-3.3.1/r-2.4.0/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="text/javascript">
       $(document).ready(() => {
-        const foodstuffsTable = $('#purchasesTable').DataTable({
+        const purchasesTable = $('#purchasesTable').DataTable({
           language: {
             url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/id.json'
           },
@@ -71,21 +80,23 @@
             right: 1,
             heightMatch: 'none'
           },
-          columnDefs: [{
-            targets: 'no-sort',
-            orderable: false
-          }],
           fixedColumns: true
         })
       })
 
       const alertPrice = (id, old_price, price, measurement_unit) => {
+        const form = $('#changePriceForm')
+        const priceInput = form.find('input[name="price"]')
+
+        form.attr('action', `/foodstuff/${id}/patch`)
+        priceInput.val(price)
+
         Swal.fire({
           title: 'HAL TAK WAJAR',
           icon: 'warning',
           html: `
             Harga lebih ${price > old_price ? 'tinggi' : 'rendah'} dibandingkan harga yang diketahui saat ini. <br><br>
-            Apakah anda ingin mengkonfirmasi perubahan harga tersebut? Jika ya, maka harga saat ini akan diubah<br><br>
+            Apakah anda ingin mengkonfirmasi perubahan harga tersebut? Jika ya, maka harga saat ini akan diperbarui<br><br>
             Rp ${old_price} per ${measurement_unit} <br>
             <i class="bi bi-chevron-double-down"></i><br>
             <b>Rp ${price} per ${measurement_unit}</b>
@@ -95,19 +106,9 @@
           cancelButtonText: 'Kembali'
         }).then((result) => {
           if (result.isConfirmed) {
-            $.ajax({
-              url: `/foodstuff/${id}/patch`,
-              type: 'POST',
-              data: {
-                _token: '{{ csrf_token() }}',
-                _method: 'PATCH',
-                price
-              },
-
-              success: () => {
-                location.reload()
-              }
-            })
+            form.submit()
+          } else {
+            priceInput.val(null)
           }
         })
       }

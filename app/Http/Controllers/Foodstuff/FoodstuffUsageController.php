@@ -23,11 +23,11 @@ class FoodstuffUsageController extends Controller
         return view('pages.foodstuff.usage.index', compact('usages'));
     }
 
-    public function show(FoodstuffUsageHistory $usage)
+    public function show(FoodstuffUsageHistory $usageHistory)
     {
-        $usage = $usage->load('usages');
+        $usageHistory = $usageHistory->load(['usages', 'usages.foodstuff:id,slug']);
 
-        return view('pages.foodstuff.usage.show', compact('usage'));
+        return view('pages.foodstuff.usage.show', compact('usageHistory'));
     }
 
     public function create()

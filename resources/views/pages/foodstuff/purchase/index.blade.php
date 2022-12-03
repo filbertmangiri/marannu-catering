@@ -1,17 +1,9 @@
-<x-app-layout title="Pembelian Bahan Makanan">
+<x-app-layout dashboard title="Pembelian Bahan Makanan">
   @push('styles')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/date-1.2.0/fc-4.2.1/fh-3.3.1/r-2.4.0/datatables.min.css" />
   @endpush
 
-  @if (session()->has('alert'))
-    <div class="alert {{ session('alert')['success'] ? 'alert-success' : 'alert-danger' }} alert-dismissible" role="alert">
-      <i class="bi {{ session('alert')['success'] ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill' }}"></i>
-
-      {{ session('alert')['message'] }}
-
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  @endif
+  <x-alert />
 
   <a href="{{ route('foodstuff.purchase.create') }}" class="btn btn-outline-dark">Tulis Pembelian Baru</a>
 

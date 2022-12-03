@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Foodstuff\FoodstuffController;
 use App\Http\Controllers\Foodstuff\FoodstuffUsageController;
 use App\Http\Controllers\Foodstuff\FoodstuffPurchaseController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,10 +45,10 @@ Route::controller(FoodstuffUsageController::class)->prefix('/foodstuff/usage')->
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/create', 'store')->name('store');
-    Route::get('/{usage}', 'show')->name('show');
+    Route::get('/{usageHistory}', 'show')->name('show');
 });
 
-Route::patch('/foodstuff/{foodstuff}/patch', [FoodstuffController::class, 'patch']);
+Route::patch('/foodstuff/{foodstuff}/patch', [FoodstuffController::class, 'patch'])->name('foodstuff.patch');
 
 Route::resource('foodstuff', FoodstuffController::class)->parameters([
     'foodstuff' => 'foodstuff:slug'
@@ -60,3 +61,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/test', fn () => view('test'))->name('test');
+Route::post('/test', function (Request $request) {
+    if ($request->file('profile_picture')) {
+        dd($request->file('profile_picture')->store('profile-pictures') ?? 'GAGAL');
+    }
+})->name('test');

@@ -46,7 +46,7 @@ class FoodstuffController extends Controller
         Foodstuff::create($validated);
 
         return Redirect::route('foodstuff.index')->with('alert', [
-            'success' => true,
+            'status' => true,
             'message' => 'Bahan makanan berhasil ditambahkan'
         ]);
     }
@@ -90,21 +90,24 @@ class FoodstuffController extends Controller
 
         return Redirect::route('foodstuff.index')->with('alert', [
             'success' => true,
-            'message' => 'Bahan makanan berhasil diubah'
+            'message' => 'Bahan makanan berhasil diperbarui'
         ]);
     }
 
     public function patch(Request $request, Foodstuff $foodstuff)
     {
-        if (!$request->has('price')) {
-            return response('error', 500);
-        }
+        $request->validate([
+            'price' => ['required', 'numeric', 'min:0', 'not_in:0']
+        ]);
 
         $foodstuff->price = $request->price;
 
         $foodstuff->save();
 
-        return response('success', 200);
+        return Redirect::back()->with('alert', [
+            'success' => true,
+            'message' => "Harga <b>$foodstuff->name</b> berhasil diperbarui"
+        ]);
     }
 
     /**

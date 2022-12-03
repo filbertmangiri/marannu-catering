@@ -54,6 +54,7 @@ return [
         'string'  => ':Attribute harus berisi lebih besar dari atau sama dengan :value karakter.',
     ],
     'image'                => ':Attribute harus berupa gambar.',
+    'image64'              => ':Attribute harus berupa file dengan type: :values.',
     'in'                   => ':Attribute yang dipilih tidak valid.',
     'in_array'             => ':Attribute tidak ada di dalam :other.',
     'integer'              => ':Attribute harus berupa bilangan bulat.',

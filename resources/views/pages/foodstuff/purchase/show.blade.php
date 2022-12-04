@@ -38,11 +38,11 @@
             @if ($purchase->foodstuff)
               @if ($purchase->price > $purchase->foodstuff->price)
                 <button class="btn" onclick="alertPrice({{ $purchase->foodstuff_id }}, {{ $purchase->foodstuff->price }}, {{ $purchase->price }}, '{{ $purchase->measurement_unit }}')">
-                  <i class="bi bi-exclamation-triangle text-danger"></i>
+                  <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
                 </button>
               @elseif ($purchase->price < $purchase->foodstuff->price)
                 <button class="btn" onclick="alertPrice({{ $purchase->foodstuff_id }}, {{ $purchase->foodstuff->price }}, {{ $purchase->price }}, '{{ $purchase->measurement_unit }}')">
-                  <i class="bi bi-info-circle text-warning"></i>
+                  <i class="bi bi-info-circle-fill text-warning fs-5"></i>
                 </button>
               @endif
             @endif

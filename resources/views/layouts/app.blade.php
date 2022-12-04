@@ -13,6 +13,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
   <style type="text/css">
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+    * {
+      font-family: "Inter", sans-serif;
+    }
+  </style>
+
+  {{-- Dashboard Sidebar Styles --}}
+  <style type="text/css">
     .feather {
       width: 16px;
       height: 16px;
@@ -23,8 +32,8 @@
       position: fixed;
       top: 0;
       /* rtl:raw:
-      right: 0;
-      */
+        right: 0;
+        */
       bottom: 0;
       /* rtl:remove */
       left: 0;

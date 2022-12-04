@@ -38,7 +38,10 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('alert', [
+            'success' => true,
+            'message' => 'Profil berhasil diperbarui',
+        ]);
     }
 
     /**
@@ -49,8 +52,8 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request)
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
+        $request->validate([
+            'password_delete' => ['required', 'current-password'],
         ]);
 
         $user = $request->user();

@@ -12,6 +12,16 @@ use App\Http\Requests\Foodstuff\UpdateFoodstuffRequest;
 class FoodstuffController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Foodstuff::class, 'foodstuff');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -90,7 +100,7 @@ class FoodstuffController extends Controller
 
         return Redirect::route('foodstuff.index')->with('alert', [
             'success' => true,
-            'message' => 'Bahan makanan berhasil diperbarui'
+            'message' => "Bahan makanan <b>$foodstuff->name</b> berhasil diperbarui",
         ]);
     }
 
@@ -106,7 +116,7 @@ class FoodstuffController extends Controller
 
         return Redirect::back()->with('alert', [
             'success' => true,
-            'message' => "Harga <b>$foodstuff->name</b> berhasil diperbarui"
+            'message' => "Harga <b>$foodstuff->name</b> berhasil diperbarui",
         ]);
     }
 
@@ -122,7 +132,7 @@ class FoodstuffController extends Controller
 
         return Redirect::route('foodstuff.index')->with('alert', [
             'success' => true,
-            'message' => 'Bahan makanan berhasil dihapus'
+            'message' => "Bahan makanan <b>$foodstuff->name</b> berhasil dihapus",
         ]);
     }
 }

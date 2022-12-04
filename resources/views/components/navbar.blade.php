@@ -33,14 +33,9 @@
             </div>
 
             <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end col-sm-6 col-md-4" aria-labelledby="profileMenu">
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{ route('profile.edit') }}">
                 <i class="bi bi-person-circle"></i>
                 My Profile
-              </a>
-
-              <a class="dropdown-item" href="#">
-                <i class="bi bi-gear-fill"></i>
-                Settings
               </a>
 
               <hr class="dropdown-divider">
@@ -58,7 +53,6 @@
           </div>
         @else
           <a class="nav-link {{ Route::is('login') ? 'active' : '' }}" href="{{ route('login') }}">Masuk</a>
-          <a class="nav-link {{ Route::is('register') ? 'active' : '' }}" href="{{ route('register') }}">Daftar</a>
         @endauth
       </div>
     </div>

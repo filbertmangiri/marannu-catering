@@ -11,6 +11,7 @@ copy .env.example .env
 composer update
 php artisan key:generate
 php artisan storage:link
+php artisan migrate --force --seed
 npm install
 npm run build
 php artisan serve

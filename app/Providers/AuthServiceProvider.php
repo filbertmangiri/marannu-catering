@@ -8,6 +8,7 @@ use App\Enums\Role;
 use App\Models\User;
 use App\Policies\FoodstuffPolicy;
 use App\Models\Foodstuff\Foodstuff;
+use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -20,7 +21,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-        Foodstuff::class => FoodstuffPolicy::class
+        User::class => UserPolicy::class,
+        Foodstuff::class => FoodstuffPolicy::class,
     ];
 
     /**

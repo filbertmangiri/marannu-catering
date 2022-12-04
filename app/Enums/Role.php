@@ -18,4 +18,14 @@ enum Role: string
       Role::Admin => 3,
     };
   }
+
+  public function locale(): string
+  {
+    return match ($this) {
+      Role::User => 'Pengguna',
+      Role::Employee => 'Karyawan',
+      Role::Moderator => 'Moderator',
+      Role::Admin => 'Admin',
+    };
+  }
 }

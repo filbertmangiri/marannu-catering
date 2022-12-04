@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Foodstuff;
 
-use App\Models\Foodstuff\Foodstuff;
 use Illuminate\Support\Str;
 use App\Enums\MeasurementUnit;
+use Illuminate\Validation\Rule;
+use App\Models\Foodstuff\Foodstuff;
 use Illuminate\Validation\Rules\Enum;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -31,7 +32,7 @@ class UpdateFoodstuffRequest extends FormRequest
 
         return [
             'name' => ['required', 'string'],
-            'slug' => ['required', 'string', 'unique:' . Foodstuff::class . ',slug,' . $this->foodstuff->id],
+            'slug' => ['required', 'string', Rule::unique(Foodstuff::class)->ignore($this->foodstuff->id)],
             'price' => ['required', 'numeric', 'min:0'],
             'measurement_unit' => ['required', 'string', new Enum(MeasurementUnit::class)],
         ];

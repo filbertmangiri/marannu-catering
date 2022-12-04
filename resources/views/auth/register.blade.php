@@ -15,11 +15,11 @@
 
           <div class="mb-4">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="gender" id="genderMale" value="{{ Gender::Male }}" {{ old('gender') === Gender::Male ? 'checked' : '' }}>
+              <input class="form-check-input" type="radio" name="gender" id="genderMale" value="{{ Gender::Male->value }}" {{ old('gender') === Gender::Male->value ? 'checked' : '' }}>
               <label class="form-check-label" for="genderMale">Pria</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="{{ Gender::Female }}" {{ old('gender') === Gender::Female ? 'checked' : '' }}>
+              <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="{{ Gender::Female->value }}" {{ old('gender') === Gender::Female->value ? 'checked' : '' }}>
               <label class="form-check-label" for="genderFemale">Wanita</label>
             </div>
 
@@ -33,14 +33,16 @@
 
           <div class="row row-cols-1 mb-0 row-cols-sm-2 mb-sm-4 gx-2">
             <div class="col">
-              <x-form.floating-input type="password" name="password" class="mb-3 mb-sm-0">Kata Sandi</x-form.floating-input>
+              <x-form.floating-input type="password" name="password" class="mb-3 mb-sm-0">Password</x-form.floating-input>
             </div>
             <div class="col">
-              <x-form.floating-input type="password" name="password_confirmation" class="mb-4 mb-sm-0">Ulangi Kata Sandi</x-form.floating-input>
+              <x-form.floating-input type="password" name="password_confirmation" class="mb-4 mb-sm-0">Ulangi Password</x-form.floating-input>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-lg btn-dark rounded-4 d-block w-100">Daftar</button>
+          <button type="submit" class="btn btn-lg btn-dark rounded-4 d-block w-100 mb-4">Daftar</button>
+
+          <span class="ms-2">Sudah ada akun? <a href="{{ route('login') }}" class="text-reset">Masuk</a></span>
         </form>
       </div>
     </div>

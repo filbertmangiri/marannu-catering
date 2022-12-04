@@ -3,11 +3,10 @@
 namespace App\Policies;
 
 use App\Enums\Role;
-use App\Models\Foodstuff\Foodstuff;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class FoodstuffPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -26,21 +25,10 @@ class FoodstuffPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Foodstuff  $foodstuff
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Foodstuff $foodstuff)
-    {
-        return $user->can('atleast_role', Role::Moderator);
-    }
-
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function create(User $user)
+    public function view(User $user, User $model)
     {
         return $user->can('atleast_role', Role::Moderator);
     }
@@ -49,52 +37,79 @@ class FoodstuffPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Foodstuff  $foodstuff
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Foodstuff $foodstuff)
+    public function update(User $user, User $model)
     {
-        return $user->can('atleast_role', Role::Moderator);
-    }
+        $isAtleastModerator = $user->can('atleast_role', Role::Moderator);
+        $isCurrentUser = $user === $model;
+        $isRoleHigher = $user->role->level() > $model->role->level();
 
-    public function patch(User $user, Foodstuff $foodstuff)
-    {
-        return $user->can('atleast_role', Role::Moderator);
+        if ($isCurrentUser) {
+            return false;
+        }
+
+        if (!$isCurrentUser && !$isAtleastModerator) {
+            return false;
+        }
+
+        if (!$isCurrentUser && !$isRoleHigher) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Foodstuff  $foodstuff
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Foodstuff $foodstuff)
+    public function delete(User $user, User $model)
     {
-        return $user->can('atleast_role', Role::Moderator);
+        $isAtleastModerator = $user->can('atleast_role', Role::Moderator);
+        $isCurrentUser = $user === $model;
+        $isRoleHigher = $user->role->level() > $model->role->level();
+
+        if ($isCurrentUser) {
+            return false;
+        }
+
+        if (!$isCurrentUser && !$isAtleastModerator) {
+            return false;
+        }
+
+        if (!$isCurrentUser && !$isRoleHigher) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Foodstuff  $foodstuff
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Foodstuff $foodstuff)
+    public function restore(User $user, User $model)
     {
-        return $user->can('atleast_role', Role::Moderator);
+        //
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Foodstuff  $foodstuff
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Foodstuff $foodstuff)
+    public function forceDelete(User $user, User $model)
     {
-        return $user->can('atleast_role', Role::Moderator);
+        //
     }
 }

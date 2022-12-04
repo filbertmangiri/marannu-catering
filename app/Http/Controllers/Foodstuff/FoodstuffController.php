@@ -56,7 +56,7 @@ class FoodstuffController extends Controller
         Foodstuff::create($validated);
 
         return Redirect::route('foodstuff.index')->with('alert', [
-            'status' => true,
+            'success' => true,
             'message' => 'Bahan makanan berhasil ditambahkan'
         ]);
     }

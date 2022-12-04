@@ -42,7 +42,7 @@
 
     <button type="button" class="btn btn-sm btn-outline-success mb-3" id="foodstuffAddRowButton">Tambah Baris</button>
 
-    <button type="submit" class="btn btn-lg btn-dark rounded-4 d-block w-100">Selesai</button>
+    <button type="button" class="btn btn-lg btn-dark rounded-4 d-block w-100" id="createPurchaseButton">Selesai</button>
   </form>
 
   <template id="foodstuffRow">
@@ -116,6 +116,21 @@
 
       $('#foodstuffAddRowButton').click(() => {
         foodstuffCreateRow()
+      })
+
+      $('#createPurchaseButton').click(function() {
+        Swal.fire({
+          title: 'Anda yakin ingin menyelesaikan pembelian ini?',
+          icon: 'warning',
+          html: 'Sekalinya anda menyudahi pembelian ini, maka tidak akan bisa anda ubah lagi',
+          confirmButtonText: 'Selesai',
+          showCancelButton: true,
+          cancelButtonText: 'Kembali'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $(this).parents('form').submit()
+          }
+        })
       })
     </script>
   @endpush

@@ -79,9 +79,7 @@
         })
       })
 
-      $(document).on('click', '#deleteFoodstuffButton', function(event) {
-        event.preventDefault()
-
+      $(document).on('click', '#deleteFoodstuffButton', function() {
         Swal.fire({
           title: 'Anda yakin ingin menghapus bahan makanan ini?',
           icon: 'warning',

@@ -49,7 +49,21 @@ class FoodstuffUsageController extends Controller
             'foodstuff_id.*' => ['required', 'numeric', 'min:1'],
 
             'quantity' => ['array'],
-            'quantity.*' => ['required', 'numeric', 'min:0', 'not_in:0'],
+            'quantity.*' => ['required', 'numeric', 'min:0', 'not_in:0', function ($attribute, $value, $fail) {
+                $foodstuff = Foodstuff::find(request()->foodstuff_id[(int) explode('.', $attribute)[1]]);
+
+                if (!$foodstuff) {
+                    $fail('Bahan makanan tidak ditemukan');
+                    return;
+                }
+
+                $quantity = $foodstuff->quantity;
+                $measurement_unit = $foodstuff->measurement_unit;
+
+                if ($value > $quantity) {
+                    $fail(":Attribute melebihi stok, yaitu $quantity $measurement_unit->value");
+                }
+            }],
         ], [
             'rows_count' => 'Harus ada minimal satu :attribute yang dipilih'
         ], [

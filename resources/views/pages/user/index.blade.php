@@ -86,9 +86,7 @@
         })
       })
 
-      $(document).on('click', '#deleteUserButton', function(event) {
-        event.preventDefault()
-
+      $(document).on('click', '#deleteUserButton', function() {
         Swal.fire({
           title: 'Anda yakin ingin menghapus user ini?',
           icon: 'warning',

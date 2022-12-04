@@ -75,7 +75,15 @@
             targets: 'no-sort',
             orderable: false
           }],
-          fixedColumns: true
+          fixedColumns: true,
+          createdRow: function(row, data, dataIndex) {
+            const quantity = Number(data[2].split(' ')[0])
+
+            if (quantity <= 0) {
+              $(row).addClass('bg-warning');
+              $(row).find('.btn-outline-warning').removeClass('btn-outline-warning').addClass('btn-outline-dark')
+            }
+          }
         })
       })
 

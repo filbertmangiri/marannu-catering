@@ -65,10 +65,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-
-Route::get('/test', fn () => view('test'))->name('test');
-Route::post('/test', function (Request $request) {
-    if ($request->file('profile_picture')) {
-        dd($request->file('profile_picture')->store('profile-pictures') ?? 'GAGAL');
-    }
-})->name('test');

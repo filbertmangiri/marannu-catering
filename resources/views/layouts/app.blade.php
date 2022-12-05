@@ -9,6 +9,8 @@
 
   <title>{{ $title ?? config('app.name') }}</title>
 
+  <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/brand.png') }}">
+
   <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-5.2.3/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-icons-1.10.2/bootstrap-icons.css') }}">
 

@@ -15,7 +15,9 @@
       </button>
     @endif
 
-    <a class="navbar-brand" href="{{ route('home') }}">{{ env('APP_NAME') }}</a>
+    <a class="navbar-brand" href="{{ route('home') }}">
+      <img src="{{ asset('assets/img/brand-fill.png') }}" alt="Marannu Catering" height="40">
+    </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -46,7 +48,7 @@
             <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end col-sm-6 col-md-4" aria-labelledby="profileMenu">
               <a class="dropdown-item {{ Route::is('profile.*') ? 'active' : '' }}" href="{{ route('profile.edit') }}">
                 <i class="bi bi-person-circle"></i>
-                My Profile
+                Profil
               </a>
 
               <hr class="dropdown-divider">

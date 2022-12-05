@@ -59,6 +59,10 @@
         height: 32rem;
       }
 
+      .carousel-card {
+        background-color: rgba(0, 0, 0, 0.793) !important;
+      }
+
 
       /* MARKETING CONTENT */
 
@@ -127,39 +131,41 @@
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
+
     <div class="carousel-inner">
-      <div class="carousel-item active" style="background-image: url(https://img.freepik.com/free-photo/gourmet-table-white-dish-catering_1203-4719.jpg?w=2000)">
+      <div class="carousel-item active" style="background-image: url({{ asset('assets/img/pages/home/carousel/1.webp') }})">
         <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+          <div class="carousel-caption text-start carousel-card rounded-4 shadow p-5">
+            <h1>Selamat Datang</h1>
+            <p><b>Marannu Catering</b> adalah... Lanjut part 2 <i class="bi bi-arrow-right"></i></p>
           </div>
         </div>
       </div>
-      <div class="carousel-item" style="background-image: url(https://i2.wp.com/kuyahejo.com/wp-content/uploads/2017/04/Catering-Bandung.jpg?fit=1400%2C900&ssl=1)">
+
+      <div class="carousel-item" style="background-image: url({{ asset('assets/img/pages/home/carousel/2.webp') }})">
         <div class="container">
-          <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+          <div class="carousel-caption carousel-card rounded-4 shadow p-5">
+            <h1>Duh..</h1>
+            <p>Malu, pake gambar dari google semua. Oke, jadi <b>Marannu Catering</b> itu adalah... Lanjut part 3 <i class="bi bi-arrow-right"></i></p>
           </div>
         </div>
       </div>
-      <div class="carousel-item" style="background-image: url(https://lsppariwisata.com/wp-content/uploads/2022/08/caterers-royal-spoon-caterers-catering-setup-1_15_399105-164796636429883.jpeg)">
+
+      <div class="carousel-item" style="background-image: url({{ asset('assets/img/pages/home/carousel/3.jpeg') }})">
         <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+          <div class="carousel-caption text-end carousel-card rounded-4 shadow p-5">
+            <h1>Bingung mau nulis apa euy</h1>
+            <p>Mending kamu langsung cari informasinya di bawah ini. Scroll yuk <i class="bi bi-arrow-down"></i></p>
           </div>
         </div>
       </div>
     </div>
+
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
+
     <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
@@ -172,35 +178,28 @@
   <!-- Wrap the rest of the page in another container to center all the content. -->
 
   <div class="container marketing">
+    <h1 class="mb-5 text-center">
+      <i class="bi bi-dash-lg"></i>
+      Pejabat Tapi Jujur
+      <i class="bi bi-dash-lg"></i>
+    </h1>
 
     <!-- Three columns of text below the carousel -->
     <div class="row justify-content-center">
       <div class="col-12 col-sm-6 col-md-5 col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-        </svg>
-
-        <h2>Heading</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <img src="{{ asset('assets/img/pages/home/person/frans-mangiri.jpg') }}" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Fabiola Mangiri">
+        <h2 class="mt-3">Frans Mangiri</h2>
+        <p>Bapak pencetus ide pertama buka usaha catering.</p>
       </div>
       <div class="col-12 col-sm-6 col-md-5 col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-        </svg>
-
-        <h2>Heading</h2>
-        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <img src="{{ asset('assets/img/pages/home/person/yosepina-marannu-k.jpg') }}" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Fabiola Mangiri">
+        <h2 class="mt-3">Yosepina Marannu K.</h2>
+        <p>Beliau merupakan CEO, direktur, komisaris, manager keuangan, sekaligus koki juga, semuanya lah pokoknya.</p>
       </div>
       <div class="col-12 col-sm-6 col-md-5 col-lg-4">
-        <img src="{{ asset('assets/img/Fabiola Mangiri.jpg') }}" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Fabiola Mangiri">
-
-        <h2>Heading</h2>
-        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <img src="{{ asset('assets/img/pages/home/person/fabiola-mangiri.jpg') }}" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Fabiola Mangiri">
+        <h2 class="mt-3">Fabiola Mangiri</h2>
+        <p>Si penerus usaha catering biar orang tetep bisa makan enak.</p>
       </div>
     </div>
 
@@ -209,17 +208,19 @@
 
     <hr class="featurette-divider">
 
+    <h1 class="mb-5 text-center">
+      <i class="bi bi-dash-lg"></i>
+      Kamu nanya, ada apa aja?
+      <i class="bi bi-dash-lg"></i>
+    </h1>
+
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+        <h2 class="featurette-heading">Tumpengan? <span class="text-muted">Bisa.</span></h2>
+        <p class="lead">Nasi kuning dengan berbagai macam lauk di pinggir. Nikmat mana yang kau dustakan?</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
-
+        <img src="{{ asset('assets/img/pages/home/card/nasi-tumpeng-besar.jpg') }}" alt="Nasi Tumpeng Besar" width="500" height="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid rounded-4 shadow mx-auto">
       </div>
     </div>
 
@@ -227,15 +228,11 @@
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+        <h2 class="featurette-heading">Mau yang mini? <span class="text-muted">Juga bisa.</span></h2>
+        <p class="lead">Buat kamu yang pengen tumpengan tapi jijik berbagi tumpeng dengan yang lain hehe.</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
-
+        <img src="{{ asset('assets/img/pages/home/card/nasi-tumpeng-kecil.jpg') }}" alt="Nasi Tumpeng Kecil" width="500" height="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid rounded-4 shadow mx-auto">
       </div>
     </div>
 
@@ -243,16 +240,33 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+        <h2 class="featurette-heading">Lunch? Dinner? SETIAP HARI?! <br><span class="text-muted">Bisa.</span></h2>
+        <p class="lead">Murah dan bergizi, dianterin sampe depan kamar kosan kamu.</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
-
+        <img src="{{ asset('assets/img/pages/home/card/nasi-bento.jpg') }}" alt="Nasi Bento" width="500" height="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid rounded-4 shadow mx-auto">
       </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">"Rumah gue arisan, apa yang enak?"</h2>
+        <p class="lead">Yang enak? Ya cuma <span class="fw-bold">pastel</span>, ehh nama yang bener <span class="fw-bold">panada</span>.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="{{ asset('assets/img/pages/home/card/kue-pastel.jpg') }}" alt="Kue Pastel" width="500" height="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid rounded-4 shadow mx-auto">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="text-center">
+      <h2>Prasmanan, kondangan, catering pabrik, dan masih banyak lagi.</h2>
+      <br>
+      <h3>Jadi, kamu udah tau mau pesen apa? Kalo mau nanya di chat <a href="https://wa.me/6282114225746" target="_blank" class="btn btn-success"><i class="bi bi-whatsapp"></i> WhatsApp</a> aja.</h3>
+      <h3>Boleh DM <a href="https://www.instagram.com/marannu.catering/" target="_blank" class="btn text-light" style="background-color: rgb(212, 0, 131)"><i class="bi bi-instagram me-1"></i> @marannu.catering</a> dulu aja kalo masih malu</h3>
     </div>
 
     <hr class="featurette-divider">
@@ -275,7 +289,12 @@
       </div>
 
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3">
+        <li class="ms-5">
+          <a class="text-muted" href="https://wa.me/6282114225746" target="_blank">
+            <i class="bi bi-whatsapp" style="font-size: 24px"></i>
+          </a>
+        </li>
+        <li class="ms-5">
           <a class="text-muted" href="https://www.instagram.com/marannu.catering/" target="_blank">
             <i class="bi bi-instagram" style="font-size: 24px"></i>
           </a>

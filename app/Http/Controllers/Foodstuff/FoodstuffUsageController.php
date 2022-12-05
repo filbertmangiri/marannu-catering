@@ -61,7 +61,7 @@ class FoodstuffUsageController extends Controller
                 $measurement_unit = $foodstuff->measurement_unit;
 
                 if ($value > $quantity) {
-                    $fail(":Attribute melebihi stok, yaitu $quantity $measurement_unit->value");
+                    $fail(':Attribute melebihi stok');
                 }
             }],
         ], [

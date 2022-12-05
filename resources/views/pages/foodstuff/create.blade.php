@@ -4,8 +4,8 @@
 
 <x-app-layout dashboard title="Tambah Bahan Makanan">
   @push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2-4.1.0/css/select2.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2-bootstrap-5-theme-1.3.0/select2-bootstrap-5-theme.min.css') }}" />
   @endpush
 
   <div class="row justify-content-center">
@@ -27,7 +27,7 @@
               <option disabled {{ !$oldMeasurementUnit ? 'selected' : '' }}>Pilih Satuan Hitung</option>
 
               @foreach (MeasurementUnit::cases() as $measurementUnit)
-                <option value="{{ $measurementUnit }}" {{ $measurementUnit === $oldMeasurementUnit ? 'selected' : '' }}>{{ $measurementUnit->long() }}</option>
+                <option value="{{ $measurementUnit }}" {{ $measurementUnit === $oldMeasurementUnit ? 'selected' : '' }}>{{ $measurementUnit->locale() }}</option>
               @endforeach
             </select>
 
@@ -45,8 +45,8 @@
   </div>
 
   @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('assets/vendor/jquery-3.6.1/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/select2-4.1.0/js/select2.min.js') }}"></script>
 
     <script type="text/javascript">
       $(document).ready(function() {

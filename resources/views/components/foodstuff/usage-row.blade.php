@@ -8,7 +8,7 @@
       <option></option>
 
       @foreach ($foodstuffs as $foodstuff)
-        <option value="{{ $foodstuff->id }}" data-price="{{ $foodstuff->price }}" data-measurement_unit="{{ $foodstuff->measurement_unit }}" @isset($row) {{ $foodstuff->id == old('foodstuff_id.' . $row) ? 'selected' : '' }} @endisset>{{ $foodstuff->name }}</option>
+        <option value="{{ $foodstuff->id }}" data-stock="{{ $foodstuff->quantity }}" data-price="{{ $foodstuff->price }}" data-measurement_unit="{{ $foodstuff->measurement_unit }}" @isset($row) {{ $foodstuff->id == old('foodstuff_id.' . $row) ? 'selected' : '' }} @endisset>{{ $foodstuff->name }}</option>
       @endforeach
     </select>
 
@@ -20,6 +20,19 @@
         </div>
       @enderror
     @endisset
+  </td>
+
+  <td>
+    <div class="input-group">
+      <input type="number" step="0.1" name="stock[]" @isset($row) value="{{ old('stock.' . $row) }}" @endisset class="form-control foodstuff-stock" readonly>
+      <span class="input-group-text foodstuff-quantity-measurement-unit">
+        @isset($row)
+          {{ old('measurement_unit.' . $row) ?? '...' }}
+        @else
+          ...
+        @endisset
+      </span>
+    </div>
   </td>
 
   <td>

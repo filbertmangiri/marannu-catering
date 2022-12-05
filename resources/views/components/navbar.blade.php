@@ -3,8 +3,18 @@
   use App\Enums\Role;
 @endphp
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" id="navigationBar">
+@props([
+    'position' => 'sticky-top',
+])
+
+<nav class="navbar {{ $position }} navbar-expand-lg navbar-dark bg-dark" id="navigationBar">
   <div class="container">
+    @if ($attributes->has('dashboard'))
+      <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    @endif
+
     <a class="navbar-brand" href="{{ route('page.home') }}">{{ env('APP_NAME') }}</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,12 +38,15 @@
         @auth
           <div class="nav-item dropdown">
             <div class="nav-link dropdown-toggle d-flex align-items-center" role="button" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false">
+              @can('atleast_role', Role::Employee)
+                <span class="badge rounded-pill text-bg-primary me-3">{{ auth()->user()->role->locale() }}</span>
+              @endcan
               <img class="rounded-circle me-2" src="{{ asset('storage/profile-pictures/' . (auth()->user()->gender === Gender::Male ? 'default-male' : 'default-female') . '.png') }}" alt="Foto profil saya" title="Foto profil saya" height="35px">
               {{ auth()->user()->name }}
             </div>
 
             <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end col-sm-6 col-md-4" aria-labelledby="profileMenu">
-              <a class="dropdown-item" href="{{ route('profile.edit') }}">
+              <a class="dropdown-item {{ Route::is('profile.*') ? 'active' : '' }}" href="{{ route('profile.edit') }}">
                 <i class="bi bi-person-circle"></i>
                 My Profile
               </a>

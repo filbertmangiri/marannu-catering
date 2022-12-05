@@ -1,7 +1,7 @@
 <x-app-layout dashboard title="Tulis Pembelian Baru">
   @push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2-4.1.0/css/select2.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2-bootstrap-5-theme-1.3.0/select2-bootstrap-5-theme.min.css') }}" />
   @endpush
 
   <form action="{{ route('foodstuff.purchase.store') }}" method="POST">
@@ -50,9 +50,9 @@
   </template>
 
   @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/vendor/jquery-3.6.1/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/select2-4.1.0/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/sweetalert2-11.6.15/sweetalert2.all.min.js') }}"></script>
 
     <script type="text/javascript">
       let rowsCount = {{ old('rows_count') ?? 0 }}

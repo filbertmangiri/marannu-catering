@@ -7,11 +7,13 @@ use Illuminate\View\Component;
 class AppLayout extends Component
 {
     public $title;
+    public $home;
     public $dashboard;
 
-    public function __construct($title = null, $dashboard = false)
+    public function __construct($title = null, $home = false, $dashboard = false)
     {
         $this->title = $title;
+        $this->home = $home;
         $this->dashboard = $dashboard;
     }
 

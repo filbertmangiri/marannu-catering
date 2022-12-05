@@ -1,6 +1,6 @@
 <x-app-layout dashboard title="Bahan Makanan">
   @push('styles')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/date-1.2.0/fc-4.2.1/fh-3.3.1/r-2.4.0/datatables.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/DataTables/datatables.min.css') }}" />
   @endpush
 
   <x-alert />
@@ -18,7 +18,7 @@
         <th>Nama</th>
         <th>Kuantitas</th>
         <th>Harga saat ini</th>
-        <th class="no-sort" width="200px"></th>
+        <th class="no-sort" width="150px"></th>
       </tr>
     </thead>
 
@@ -26,14 +26,14 @@
       @foreach ($foodstuffs as $foodstuff)
         <tr>
           <td>{{ $loop->iteration }}</td>
-          <td>{{ $foodstuff->name }}</td>
+          <td>
+            <a href="{{ route('foodstuff.show', $foodstuff->slug) }}" class="text-reset">
+              {{ $foodstuff->name }}
+            </a>
+          </td>
           <td>{{ "{$foodstuff->quantity} {$foodstuff->measurement_unit->value}" }}</td>
           <td>{{ "Rp {$foodstuff->price} per {$foodstuff->measurement_unit->value}" }}</td>
           <td>
-            <a href="{{ route('foodstuff.show', $foodstuff->slug) }}" class="btn btn-sm btn-outline-dark">
-              Lihat
-            </a>
-
             <a href="{{ route('foodstuff.edit', $foodstuff->slug) }}" class="btn btn-sm btn-outline-warning">
               Ubah
             </a>
@@ -53,14 +53,14 @@
   </table>
 
   @push('scripts')
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/date-1.2.0/fc-4.2.1/fh-3.3.1/r-2.4.0/datatables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/vendor/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/sweetalert2-11.6.15/sweetalert2.all.min.js') }}"></script>
 
     <script type="text/javascript">
       $(document).ready(() => {
         const foodstuffsTable = $('#foodstuffsTable').DataTable({
           language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/id.json'
+            url: '{{ asset('assets/vendor/DataTables/language/id.json') }}'
           },
           scrollY: '45vh',
           scrollX: true,

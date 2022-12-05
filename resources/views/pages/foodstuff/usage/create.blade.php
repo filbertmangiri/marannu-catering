@@ -1,7 +1,7 @@
 <x-app-layout dashboard title="Tulis Pemakaian Baru">
   @push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2-4.1.0/css/select2.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2-bootstrap-5-theme-1.3.0/select2-bootstrap-5-theme.min.css') }}" />
   @endpush
 
   <form action="{{ route('foodstuff.usage.store') }}" method="POST">
@@ -14,7 +14,8 @@
     <table class="table" id="createUsageTable">
       <thead>
         <tr>
-          <th scope="col" class="w-75">Nama Bahan Makanan</th>
+          <th scope="col" class="w-50">Nama Bahan Makanan</th>
+          <th scope="col" class="w-25">Stok</th>
           <th scope="col" class="w-25">Kuantitas</th>
           <th scope="col"></th>
         </tr>
@@ -50,9 +51,9 @@
   </template>
 
   @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/vendor/jquery-3.6.1/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/select2-4.1.0/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/sweetalert2-11.6.15/sweetalert2.all.min.js') }}"></script>
 
     <script type="text/javascript">
       let rowsCount = {{ old('rows_count') ?? 0 }}
@@ -98,8 +99,10 @@
       $(document).on('change', '.foodstuff-select', function() {
         const row = $(this).closest('tr')
         const selected = $(this).find(':selected')
+        const stock = selected.data('stock')
         const measurement_unit = selected.data('measurement_unit')
 
+        row.find('.foodstuff-stock').val(stock)
         row.find('.foodstuff-quantity-measurement-unit').html(measurement_unit)
         row.find('.foodstuff-measurement-unit').val(measurement_unit)
       })

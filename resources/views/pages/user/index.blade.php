@@ -1,6 +1,6 @@
 <x-app-layout dashboard title="User">
   @push('styles')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/date-1.2.0/fc-4.2.1/fh-3.3.1/r-2.4.0/datatables.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/DataTables/datatables.min.css') }}" />
 
     <style type="text/css">
       table.dataTable tbody td {
@@ -60,14 +60,14 @@
   </table>
 
   @push('scripts')
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/date-1.2.0/fc-4.2.1/fh-3.3.1/r-2.4.0/datatables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/vendor/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/sweetalert2-11.6.15/sweetalert2.all.min.js') }}"></script>
 
     <script type="text/javascript">
       $(document).ready(() => {
         const usersTable = $('#usersTable').DataTable({
           language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/id.json'
+            url: '{{ asset('assets/vendor/DataTables/language/id.json') }}'
           },
           scrollY: '55vh',
           scrollX: true,

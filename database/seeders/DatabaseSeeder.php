@@ -20,13 +20,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            UserSeeder::class,
-            FoodstuffSeeder::class,
-            FoodstuffPurchaseHistorySeeder::class,
-            FoodstuffPurchaseSeeder::class,
-            FoodstuffUsageHistorySeeder::class,
-            FoodstuffUsageSeeder::class,
-        ]);
+        if (app()->environment('APP_DEBUG')) {
+            $this->call([
+                AdminSeeder::class,
+                UserSeeder::class,
+                FoodstuffSeeder::class,
+                FoodstuffPurchaseHistorySeeder::class,
+                FoodstuffPurchaseSeeder::class,
+                FoodstuffUsageHistorySeeder::class,
+                FoodstuffUsageSeeder::class,
+            ]);
+        } else {
+            $this->call([
+                AdminSeeder::class,
+            ]);
+        }
     }
 }

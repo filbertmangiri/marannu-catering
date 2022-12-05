@@ -14,7 +14,7 @@ enum MeasurementUnit: string
   case Liter = 'ltr';
   case Kiloliter = 'kl';
 
-  public function long(): string
+  public function locale(): string
   {
     return match ($this) {
       MeasurementUnit::Pieces => 'Pieces',

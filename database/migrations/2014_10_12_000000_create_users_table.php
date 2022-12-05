@@ -1,10 +1,14 @@
 <?php
 
-use App\Enums\Gender;
 use App\Enums\Role;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\User;
+use App\Enums\Gender;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -27,6 +31,17 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        /* First Admin */
+        User::create([
+            'name' => env('ADMIN_NAME', 'Admin'),
+            'email' => env('ADMIN_EMAIL', 'admin@marannu-catering.test'),
+            'username' => env('ADMIN_USERNAME', 'admin'),
+            'gender' => env('ADMIN_GENDER', 'male'),
+            'role' => Role::Admin,
+            'password' => Hash::make(env('ADMIN_PASSWORD', 'admin')),
+            'remember_token' => Str::random(10),
+        ]);
     }
 
     /**

@@ -30,10 +30,6 @@ class DatabaseSeeder extends Seeder
                 FoodstuffUsageHistorySeeder::class,
                 FoodstuffUsageSeeder::class,
             ]);
-        } else {
-            $this->call([
-                AdminSeeder::class,
-            ]);
         }
     }
 }

@@ -15,7 +15,7 @@
       </button>
     @endif
 
-    <a class="navbar-brand" href="{{ route('page.home') }}">{{ env('APP_NAME') }}</a>
+    <a class="navbar-brand" href="{{ route('home') }}">{{ env('APP_NAME') }}</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -23,12 +23,10 @@
 
     <div class="collapse navbar-collapse" id="navigationCollapse">
       <div class="navbar-nav">
-        <a href="{{ route('page.home') }}" class="nav-link {{ Route::is('page.home') ? 'active' : '' }}">Beranda</a>
-        <a href="{{ route('page.contact') }}" class="nav-link {{ Route::is('page.contact') ? 'active' : '' }}">Kontak</a>
-        <a href="{{ route('page.about') }}" class="nav-link {{ Route::is('page.about') ? 'active' : '' }}">Tentang Kami</a>
+        <a href="{{ route('home') }}" class="nav-link {{ Route::is('home') ? 'active' : '' }}">Beranda</a>
 
         @can('viewDashboard')
-          <a class="nav-link {{ Route::is('page.dashboard') ? 'active' : '' }}" href="{{ route('page.dashboard') }}">Dashboard</a>
+          <a class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
         @endcan
       </div>
 

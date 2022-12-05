@@ -34,6 +34,7 @@
   </table>
 
   @push('scripts')
+    <script src="{{ asset('assets/vendor/jquery-3.6.1/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/DataTables/datatables.min.js') }}"></script>
 
     <script type="text/javascript">

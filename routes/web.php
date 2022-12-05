@@ -22,16 +22,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::controller(PageController::class)->name('page.')->group(function () {
-    Route::get('/', 'home')->name('home');
-    Route::get('/about', 'about')->name('about');
-    Route::get('/contact', 'contact')->name('contact');
-
-    Route::get('/home', fn () => redirect(route('page.home')));
-});
+Route::get('/', function () {
+    return view('pages.home');
+})->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [PageController::class, 'dashboard'])->name('page.dashboard')->middleware('can:viewDashboard');
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard');
+    })->name('dashboard')->middleware('can:viewDashboard');
 
     Route::resource('user', UserController::class)->parameters([
         'user' => 'user:username'

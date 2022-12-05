@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if (app()->environment('APP_DEBUG')) {
+        if (env('DB_SEED')) {
             $this->call([
                 AdminSeeder::class,
                 UserSeeder::class,
